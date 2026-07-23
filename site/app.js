@@ -307,7 +307,7 @@ function init() {
   $('#incidentForm').addEventListener('input', clearInvalid);
   $('#copyIncident').addEventListener('click', () => copyText($('#incidentText').value, text('Incident note copied. Review it before sharing.', 'घटना नोट कॉपी हो गया। साझा करने से पहले जाँचें।')));
   $('#downloadIncident').addEventListener('click', downloadIncident);
-  $('#printCard').addEventListener('click', () => window.print());
+  $('#printPage').addEventListener('click', () => window.print());
   $('#shareButton')?.addEventListener('click', shareSite);
   window.addEventListener('online', updateNetworkStatus);
   window.addEventListener('offline', updateNetworkStatus);
@@ -317,6 +317,7 @@ function init() {
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
     navigator.serviceWorker.register('./service-worker.js').catch(() => {});
   }
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('ready')));
 }
 
 document.addEventListener('DOMContentLoaded', init);
