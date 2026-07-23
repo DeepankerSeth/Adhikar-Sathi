@@ -12,24 +12,25 @@ Adhikar Sathi is a mobile-first civic safety tool. The interface must help a per
 
 ## Visual system
 
-Two automatic schemes share one token vocabulary (`styles.css` `:root` plus a `prefers-color-scheme: dark` override). Every text/surface pair meets WCAG AA (4.5:1 text, 3:1 UI boundaries) in both schemes; pairs are verified computationally before any palette change ships.
+The language is neutral, precise and product-grade — near-white/near-black surfaces, hairline borders, one indigo accent — so the semantic colors (above all, emergency red) are the only loud voices on the page. Two automatic schemes share one token vocabulary (`styles.css` `:root` plus a `prefers-color-scheme: dark` override). Every text/surface pair meets WCAG AA (4.5:1 text, 3:1 UI boundaries) in both schemes; pairs are verified computationally before any palette change ships.
 
-- Canvas `--paper`: warm off-white `#F6F3EB` / near-black green `#111714`.
-- Surfaces: `--card` `#FFFDF8`/`#181F1B`, `--soft` `#EEEEE7`/`#212A25`, form fields `--field` white/`#131A16`.
-- Text: `--ink` `#1C2A24`/`#E9EFE9`, `--text` `#26352F`/`#CFD9D1`, `--muted` `#4C5B54`/`#9FADA4`.
-- Interactive text `--accent` (`#14524A`/`#93CBB4`) is a separate token from filled action `--action` (`#14524A`/`#2E7160`) so dark mode can diverge; hover states darken in both schemes.
-- Red is reserved for emergency semantics only: `--danger` fills the 112 actions, `--danger-ink` colors emergency text. Amber = custody, blue = legal help, green = record/keep — each pathway's panel carries its color in the top rule, kicker and number chip.
-- Form-field borders (`--field-border`) hold ≥3:1 against the field background; card borders stay decorative.
-- Focus: 3px ring `--focus` (`#0B6BB0`/`#57A9E8`), offset 2px; dark surfaces override to `--focus-invert` so the ring never drops below 3:1.
-- Corner radii: 8px controls, 12px rows, 16px major containers. Shadows are shallow and functional; dark scheme relies on borders instead.
+- Canvas `--paper`: `#FCFCFD` / `#0A0B0D`, with a barely-there radial accent glow behind the hero (`--glow`).
+- Surfaces: `--card` white/`#121316`, `--soft` `#F4F5F6`/`#1A1C20`, form fields `--field` white/`#101114`; hairlines `--line` `#E4E6EA`/`#23262B`.
+- Text: `--ink` `#0E1013`/`#F4F5F7`, `--text` `#24272C`/`#C9CDD3`, `--muted` `#5A6068`/`#959CA6`.
+- One accent: indigo `--accent`/`--action` `#3B5BD2` (dark: links `#9CAEFF`, fills `#4A66D6`). Interactive text and filled actions are separate tokens so dark mode can diverge; hover states darken in both schemes.
+- Red is reserved for emergency semantics only: the header 112 button and every `tel:112` call card use `--danger`; `--danger-ink` colors emergency text. Pathway coding: red = danger, amber = custody, indigo = legal help, violet = record — each pathway's panel carries its color in the top rule, kicker and number chip.
+- The "save the essentials" band is the page's single inverted panel: near-black `--invert-bg` in light mode, an elevated bordered surface in dark mode. No other section gets a colored background.
+- Form-field borders (`--field-border`) hold ≥3:1 against the field background; card borders stay hairline-decorative.
+- Focus: 3px indigo ring (`--focus`), offset 2px; the inverted band overrides to `--focus-invert` so the ring never drops below 3:1.
+- Corner radii: 8px controls, 12px rows, 14px major containers. Shadows are shallow and functional; the dark scheme relies on borders instead. The sticky header is translucent with a backdrop blur where supported (solid otherwise, and under `prefers-reduced-transparency`).
 - `color-scheme` metadata keeps native controls, scrollbars and the browser chrome (`theme-color`, one value per scheme) in step.
 
 ## Typography
 
-- Body and Hindi: the device's native UI typeface for speed, legibility and zero network cost.
-- English display headings: Georgia. The scale is deliberately calm — h1 `clamp(1.6rem … 2.35rem)`, h2 `clamp(1.25rem … 1.6rem)` — so the four pathways, not the headline, dominate the first screen.
-- Hindi headings use the native UI typeface at weight 700, line-height 1.3; Hindi body line-height is 1.65 so matras never clip. Uppercase kickers reduce letter-spacing in Hindi.
-- Body text is at least 16px. Secondary labels are at least 12px and remain high contrast. Telephone numbers are tabular numerals.
+- Everything is set in the device's native UI typeface (SF Pro / Roboto / Segoe) for speed, legibility and zero network cost — no remote or bundled fonts, ever.
+- Display headings are weight 650 with tight tracking (h1 −.025em). The scale is deliberately calm — h1 `clamp(1.7rem … 2.5rem)`, h2 `clamp(1.28rem … 1.62rem)` — so the four pathways, not the headline, dominate the first screen.
+- Hindi headings are weight 700, line-height 1.3, letter-spacing 0 (negative Latin tracking is never applied to Devanagari); Hindi body line-height is 1.65 so matras never clip. Uppercase kickers reduce letter-spacing in Hindi.
+- Body text is at least 16px. Secondary labels are at least 12px and remain high contrast. Telephone numbers are tabular numerals at weight 650.
 
 ## Interaction
 
