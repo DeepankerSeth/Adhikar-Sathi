@@ -12,25 +12,26 @@ Adhikar Sathi is a mobile-first civic safety tool. The interface must help a per
 
 ## Visual system
 
-The language is neutral, precise and product-grade — near-white/near-black surfaces, hairline borders, one indigo accent — so the semantic colors (above all, emergency red) are the only loud voices on the page. Two automatic schemes share one token vocabulary (`styles.css` `:root` plus a `prefers-color-scheme: dark` override). Every text/surface pair meets WCAG AA (4.5:1 text, 3:1 UI boundaries) in both schemes; pairs are verified computationally before any palette change ships.
+The language is **"signal plates on paper"**: the visual vocabulary of Indian public wayfinding — platform numerals, black-on-yellow signal plates, emergency red, ruled civic documents — set calmly on warm paper. It is deliberately not a generic product aesthetic; every device exists because it is glanceable under stress. Two automatic schemes share one token vocabulary (`styles.css` `:root` plus a `prefers-color-scheme: dark` override). Every text/surface pair meets WCAG AA (4.5:1 text, 3:1 UI boundaries) in both schemes; pairs are verified computationally before any palette change ships.
 
-- Canvas `--paper`: `#FCFCFD` / `#0A0B0D`, with a barely-there radial accent glow behind the hero (`--glow`).
-- Surfaces: `--card` white/`#121316`, `--soft` `#F4F5F6`/`#1A1C20`, form fields `--field` white/`#101114`; hairlines `--line` `#E4E6EA`/`#23262B`.
-- Text: `--ink` `#0E1013`/`#F4F5F7`, `--text` `#24272C`/`#C9CDD3`, `--muted` `#5A6068`/`#959CA6`.
-- One accent: indigo `--accent`/`--action` `#3B5BD2` (dark: links `#9CAEFF`, fills `#4A66D6`). Interactive text and filled actions are separate tokens so dark mode can diverge; hover states darken in both schemes.
-- Red is reserved for emergency semantics only: the header 112 button and every `tel:112` call card use `--danger`; `--danger-ink` colors emergency text. Pathway coding: red = danger, amber = custody, indigo = legal help, violet = record — each pathway's panel carries its color in the top rule, kicker and number chip.
-- The "save the essentials" band is the page's single inverted panel: near-black `--invert-bg` in light mode, an elevated bordered surface in dark mode. No other section gets a colored background.
-- Form-field borders (`--field-border`) hold ≥3:1 against the field background; card borders stay hairline-decorative.
-- Focus: 3px indigo ring (`--focus`), offset 2px; the inverted band overrides to `--focus-invert` so the ring never drops below 3:1.
-- Corner radii: 8px controls, 12px rows, 14px major containers. Shadows are shallow and functional; the dark scheme relies on borders instead. The sticky header is translucent with a backdrop blur where supported (solid otherwise, and under `prefers-reduced-transparency`).
-- `color-scheme` metadata keeps native controls, scrollbars and the browser chrome (`theme-color`, one value per scheme) in step.
+- Ground: warm ivory `--paper` `#FAF7F0` / warm black `#121110`; white/`#1B1916` cards; warm ink `--ink` `#171511`/`#F2EFE7`; `--muted` `#5E584A`/`#A49D8E`.
+- Exactly two colors, each with one meaning. **Signal yellow** `--signal` (`#F2B90D`/`#F0B429`) marks identity and highlight moments: the hero kicker plate, the selected city chip, the primary (non-emergency) call card, the "say this" script, and the closing card band. Yellow appears only as an ink-bordered plate with ink text — never as tinted pastel or colored text on light ground. **Emergency red** `--danger` (`#C23430`/`#C63E38`) belongs to 112 alone: the header button, route 1's numeral plate, the danger panel rule, every `tel:112` card.
+- Wayfinding numerals: the four routes carry 44px square plates — route 1 reversed on red, routes 2–4 ink-bordered — with 800-weight tabular digits and a → arrow. Recognition comes from the number and the one red plate, not from four pastel hues.
+- Card physics: `1.5px` visible borders (`--line-bold`, ≥3:1) with a hard offset shadow (`--press`); pressing translates the card down 2px and collapses the shadow, like pushing a printed card. Hairlines (`--line`) only for inner grouping.
+- Structure rules are 2px solid ink: header bottom, after-safe divider, footer top — the document grid.
+- The closing "save the essentials" band **is** the emergency card: signal yellow, ink border, ink-filled primary button. In dark mode it stays yellow — illuminated signage at night.
+- Links are ink with underlines (document convention); primary buttons are ink plates in light mode and paper plates in dark mode; red buttons are unchanged in both.
+- Form-field borders (`--field-border`) hold ≥3:1 against the field background.
+- Focus: 3px ink ring (paper-white in dark), offset 2px; the yellow band overrides the ring to ink so it never drops below 3:1.
+- Corner radii: 6px controls, 8px numeral plates, 10px rows, 12px panels/band. No blur, no gradients, no glow — flat warm surfaces and crisp edges.
+- `color-scheme` metadata keeps native controls, scrollbars and the browser chrome (`theme-color`, one value per scheme) in step. The favicon is the mark: black अ on an ink-bordered signal-yellow plate.
 
 ## Typography
 
-- Everything is set in the device's native UI typeface (SF Pro / Roboto / Segoe) for speed, legibility and zero network cost — no remote or bundled fonts, ever.
-- Display headings are weight 650 with tight tracking (h1 −.025em). The scale is deliberately calm — h1 `clamp(1.7rem … 2.5rem)`, h2 `clamp(1.28rem … 1.62rem)` — so the four pathways, not the headline, dominate the first screen.
+- Everything is set in the device's native UI typeface (SF Pro / Roboto / Segoe) for speed, legibility and zero network cost — no remote or bundled fonts, ever. Character comes from weight contrast, not typeface count: 800 numerals, 750 display, 700 labels, 400 body.
+- Display headings are weight 750 with tight tracking (h1 −.02em). The scale stays calm — h1 `clamp(1.75rem … 2.6rem)`, h2 `clamp(1.3rem … 1.65rem)` — so the four pathways, not the headline, dominate the first screen. Kickers are 11px caps at .12em tracking, plate-mounted in the hero.
 - Hindi headings are weight 700, line-height 1.3, letter-spacing 0 (negative Latin tracking is never applied to Devanagari); Hindi body line-height is 1.65 so matras never clip. Uppercase kickers reduce letter-spacing in Hindi.
-- Body text is at least 16px. Secondary labels are at least 12px and remain high contrast. Telephone numbers are tabular numerals at weight 650.
+- Body text is at least 16px. Secondary labels are at least 12px and remain high contrast. Telephone numbers and route numerals are tabular figures at weight 800.
 
 ## Interaction
 
